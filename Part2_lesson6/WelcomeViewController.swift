@@ -3,6 +3,7 @@
 //  Part2_lesson6
 //
 //  Created by Даниил Чупин on 10.05.2023.
+//  Modified by Даниил Чупин on 12.05.2023.
 //
 
 import UIKit
@@ -13,23 +14,15 @@ final class WelcomeViewController: UIViewController {
     
     @IBOutlet weak var welcomeMessageLabel: UILabel!
     
-    @IBOutlet weak var logoutButton: UIButton!
-    
     var welcomeMessage: String!
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        welcomeMessageLabel.text = welcomeMessage
+        welcomeMessageLabel.text = "Hello, \(welcomeMessage ?? "") 🤝!"
         
         setupGradientBackground()
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction func logoutButtonTapped() {
-        dismiss(animated: true)
     }
     
     // MARK: - Helper Methods

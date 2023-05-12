@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DDN-p0-lvH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ade-fY-9ln">
-                                <rect key="frame" x="60" y="124" width="200" height="98"/>
+                                <rect key="frame" x="60" y="80" width="200" height="98"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="H1M-Vj-7Pe">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="34"/>
@@ -58,7 +58,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WkJ-yc-rdc">
-                                <rect key="frame" x="125" y="282" width="70.5" height="34.5"/>
+                                <rect key="frame" x="125" y="238" width="70.5" height="34.5"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log In">
@@ -66,7 +66,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wX2-Y8-eX6"/>
-                                    <segue destination="DDF-J6-vq3" kind="presentation" identifier="WelcomeScreenSegue" modalPresentationStyle="fullScreen" id="W1M-aR-adJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -86,6 +85,7 @@
                         <outlet property="loginButton" destination="WkJ-yc-rdc" id="7Gw-Aj-76W"/>
                         <outlet property="passwordTextField" destination="eIh-Bg-a0i" id="B0V-Lh-n2X"/>
                         <outlet property="usernameTextField" destination="0jf-mC-1i3" id="fd4-O2-4H2"/>
+                        <segue destination="DDF-J6-vq3" kind="presentation" identifier="WelcomeScreenSegue" modalPresentationStyle="fullScreen" id="YRW-zE-PFQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -111,7 +111,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Log Out"/>
                                 <connections>
-                                    <action selector="logoutButtonTapped" destination="DDF-J6-vq3" eventType="touchUpInside" id="hSt-M7-K1Y"/>
                                     <segue destination="hdE-km-dCM" kind="unwind" unwindAction="unwindFor:" id="WVJ-AA-Omc"/>
                                 </connections>
                             </button>
@@ -127,7 +126,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="hxO-dw-we5"/>
                     <connections>
-                        <outlet property="logoutButton" destination="4sB-F8-5sv" id="YtO-Md-uvN"/>
                         <outlet property="welcomeMessageLabel" destination="Vx5-e8-F4Y" id="4zM-8R-xsk"/>
                     </connections>
                 </viewController>
@@ -135,24 +133,6 @@
                 <exit id="hdE-km-dCM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1865" y="-2"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fZc-2f-Tb9">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DDN-p0-lvH" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jfz-oX-rUs">
-                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="7xk-q1-jgg"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mhl-4L-gyu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="46.564885496183201" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>

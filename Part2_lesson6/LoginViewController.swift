@@ -3,6 +3,7 @@
 //  Part2_lesson6
 //
 //  Created by Даниил Чупин on 10.05.2023.
+//  Modified by Даниил Чупин on 12.05.2023.
 //
 
 import UIKit
@@ -15,6 +16,9 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBOutlet weak var loginButton: UIButton!
+    
+    private let validUsername = "admin"
+    private let validPassword = "password"
     
     // MARK: - View Lifecycle
     
@@ -30,32 +34,10 @@ final class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String,
-                                     sender: Any?) -> Bool {
-        if identifier == "WelcomeScreenSegue" {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "WelcomeScreenSegue" {
             guard let welcomeVC = segue.destination as? WelcomeViewController
             else { return }
-            welcomeVC.welcomeMessage = "Hello, \(usernameTextField.text!) 🤝!"
-        }
-    }
-    
-    // MARK: - Keyboard Settings
-    
-    func configureKeyboardSettings() {
-        usernameTextField.autocorrectionType = .no
-        usernameTextField.smartQuotesType = .no
-        usernameTextField.smartDashesType = .no
-        usernameTextField.smartInsertDeleteType = .no
-
-        passwordTextField.isSecureTextEntry = true
+            welcomeVC.welcomeMessage = validUsername
     }
     
     // MARK: - Actions
@@ -70,7 +52,9 @@ final class LoginViewController: UIViewController {
             performSegue(withIdentifier: "WelcomeScreenSegue", sender: nil)
         } else {
             showAlert(title: "Ошибка",
-                                message: "Неверные учетные данные")
+                      message: "Неверные учетные данные",
+                      textField: passwordTextField
+            )
         }
     }
     
@@ -91,18 +75,27 @@ final class LoginViewController: UIViewController {
     
     private func isValidCredentials(username: String,
                                     password: String) -> Bool {
-        let validUsername = "admin"
-        let validPassword = "password"
-        
-        return username == validUsername && password == validPassword
+        username == validUsername && password == validPassword
     }
     
-    private func showAlert(title: String, message: String) {
+    private func showAlert(title: String,
+                           message: String,
+                           textField: UITextField? = nil) {
         let alertController = UIAlertController(title: title,
                                             message: message,
                                             preferredStyle: .alert)
         let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
+        textField?.text = ""
+    }
+    
+    private func configureKeyboardSettings() {
+        usernameTextField.autocorrectionType = .no
+        usernameTextField.smartQuotesType = .no
+        usernameTextField.smartDashesType = .no
+        usernameTextField.smartInsertDeleteType = .no
+
+        passwordTextField.isSecureTextEntry = true
     }
 }
