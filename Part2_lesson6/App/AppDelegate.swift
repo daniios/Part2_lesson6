@@ -3,6 +3,7 @@
 //  Part2_lesson6
 //
 //  Created by Даниил Чупин on 10.05.2023.
+//  Modified by Даниил Чупин on 14.05.2023.
 //
 
 import UIKit
