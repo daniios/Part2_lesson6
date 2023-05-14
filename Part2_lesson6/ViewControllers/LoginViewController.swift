@@ -16,17 +16,24 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBOutlet weak var loginButton: UIButton!
-    
-    private let validUsername = "admin"
-    private let validPassword = "password"
+        
+    var user: User?
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let userDefaults = UserDefaults.standard
+        if let userData = userDefaults.data(forKey: "userKey"),
+           let user = User.fromData(userData) {
+            self.user = user
+        }
+        
         configureKeyboardSettings()
         loginButton.layer.cornerRadius = 10
+        
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -37,7 +44,7 @@ final class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             guard let welcomeVC = segue.destination as? WelcomeViewController
             else { return }
-            welcomeVC.welcomeMessage = validUsername
+            welcomeVC.welcomeMessage = user?.username
     }
     
     // MARK: - Actions
@@ -59,11 +66,11 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func userInfoButtonTapped(_ sender: UIButton) {
-        showAlert(title: "Пользователь:", message: "admin")
+        showAlert(title: "Пользователь:", message: user?.username ?? "")
     }
     
     @IBAction func pswdInfoButtonTapped(_ sender: UIButton) {
-        showAlert(title: "Пароль:", message: "password")
+        showAlert(title: "Пароль:", message: user?.password ?? "")
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
@@ -75,7 +82,7 @@ final class LoginViewController: UIViewController {
     
     private func isValidCredentials(username: String,
                                     password: String) -> Bool {
-        username == validUsername && password == validPassword
+        username == user?.username && password == user?.password
     }
     
     private func showAlert(title: String,

@@ -10,10 +10,36 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let user = User(
+            username: "admin",
+            password: "password",
+            name: "John Doe",
+            age: 30,
+            email: "johndoe@example.com",
+            workExperience: "Senior Software Engineer at XYZ Company",
+            education: "Bachelor's Degree in Computer Science",
+            skills: ["Swift",
+                     "iOS Development",
+                     "Python",
+                     "Problem Solving"],
+            address: "123 Main Street, City, Country",
+            phoneNumber: "+1234567890",
+            portfolio: "https://www.johndoeportfolio.com",
+            certificates: ["iOS Development Certification",
+                           "Python Certification"],
+            interests: ["Photography",
+                        "Travel",
+                        "Reading",
+                        "Gaming"]
+        )
+        let userDefaults = UserDefaults.standard
+        
+        if let userData = user.toData() {
+            userDefaults.set(userData, forKey: "userKey")
+        }
+        
         return true
     }
 
